@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    font-family: 'Anuphan', sans-serif;
+}
+
+html {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    margin: 50px;
+    width: 60vw;
+    min-width: 800px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    margin: 20px;
+    height: 100px;
+}
+
+.add-book {
+    background-color: aquamarine;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 20px;
+    padding: 5px 10px;
+}
+
+.add-book:hover {
+    cursor: pointer;
+    background-color: #7fffd494;
+}
+
+.new-book {
+    padding: 64px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    transition: transform .3s ease-in-out, opacity .4s ease;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+    opacity: 0%;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.new-book.show {
+    transform: translate(-50%, -50%);
+    opacity: 100%;
+    pointer-events: all;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 32px;
+}
+
+input {
+    background: #cacaca;
+    padding: 7px;
+    font-size: 1.2rem;
+}
+
+.new-book div:nth-child(3) input {
+    width: 100px;
+}
+
+input:focus {
+    background: #ebebeb;
+}
+
+.is-read {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider-green {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d8d8d8;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider-green:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider-green {
+  background-color: #66B032;
+}
+
+input:focus + .slider-green {
+  box-shadow: 0 0 1px #66B032;
+}
+
+input:checked + .slider-green:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider-green.round {
+  border-radius: 30px;
+}
+
+.slider-green.round:before {
+  border-radius: 50%;
+}
+
+#add-book {
+    background-color: aquamarine;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+#add-book:hover {
+    cursor: pointer;
+    background-color: #7fffd494;
+}
+
+#close-modal {
+    background-color: rgb(204, 204, 204);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 32px;
+    padding: 5px 10px;
+}
+
+#close-modal:hover {
+    cursor: pointer;
+    background-color: #dbdbdb94;
+}
+
+.collection-container {
+    background-color: #e9e9e9;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.collection-container h1 {
+    background-color: rgb(253, 253, 253);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
+    gap: 20px;
+    background-color: rgb(221, 221, 221);
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.book {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.book h2 {
+    background-color: #66B032;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.book h3 {
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.details {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.pages-container {
+    display: flex;
+    align-items: center;
+}
+
+.pages-container p:nth-child(1) {
+    border: 1px solid rgb(127, 182, 255);
+    background-color: rgb(127, 182, 255);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.page {
+    border: 1px solid rgb(127, 182, 255);
+    border-radius: 5px;
+    padding: 5px 10px 5px 20px;
+    margin-left: -10px;
+}
+
+.isRead {
+    background-color: rgb(195, 0, 255);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
