@@ -252,3 +252,42 @@ input:checked + .slider-green:before {
     border-radius: 5px;
     padding: 5px 10px;
 }
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.read-button {
+    border: 2px solid #66B032;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #66B032;
+    font-weight: 500;
+}
+
+.read-button:hover {
+    cursor: pointer;
+    background-color: #66B032;
+    color: white;
+}
+
+.remove-button {
+    margin-left: auto;
+    background-color: transparent;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 2.5px 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: red;
+}
+
+.remove-button:hover {
+    cursor: pointer;
+    background-color: red;
+    color: white;
+}

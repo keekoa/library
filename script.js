@@ -21,15 +21,6 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-// function addBookToLibrary() {
-//     // let title = document.getElementById('title').value;
-//     // let author = document.getElementById('author').value;
-//     // let pages = document.getElementById('pages').value;
-//     // let isRead = document.getElementById('isRead').checked;
-
-//     // return new Book(title, author, pages, isRead);
-// }
-
 const collection = document.querySelector('.collection');
 
 const form = document.forms['form'];
@@ -48,12 +39,14 @@ form.onsubmit = function (e) {
     modal.classList.remove('show');
 
     collection.innerHTML = '';
-    console.log(myLibrary);
     populateCollection();
 };
 
 function populateCollection() {
+    let i = -1;
     for (let book in myLibrary) {
+        i += 1;
+
         // Elements
         const bookCard = document.createElement('div');
         const titleElement = document.createElement('h2');
@@ -63,6 +56,12 @@ function populateCollection() {
         const pageTitle = document.createElement('p');
         const pagesElement = document.createElement('p');
         const isReadElement = document.createElement('p');
+        const cardButtons = document.createElement('div');
+        const removeButton = document.createElement('button');
+        const readButton = document.createElement('button');
+
+        // Add an id to each book card
+        bookCard.setAttribute('id', `book-${i}`);
 
         // Classlists
         bookCard.classList.add('book');
@@ -72,23 +71,57 @@ function populateCollection() {
         pageContainer.classList.add('pages-container');
         pagesElement.classList.add('page');
         isReadElement.classList.add('isRead');
+        cardButtons.classList.add('card-buttons');
+        removeButton.classList.add('remove-button');
+        readButton.classList.add('read-button');
 
         // Append
         collection.appendChild(bookCard);
+
         bookCard.appendChild(titleElement);
         bookCard.appendChild(authorElement);
         bookCard.appendChild(details);
-        details.appendChild(pageContainer);
+        bookCard.appendChild(cardButtons);
+
         details.appendChild(isReadElement);
+        details.appendChild(pageContainer);
+
         pageContainer.appendChild(pageTitle);
         pageContainer.appendChild(pagesElement);
 
+        if (myLibrary[book].isRead === false) { cardButtons.appendChild(readButton); }
+        cardButtons.appendChild(removeButton);
+
         // Content
         pageTitle.textContent = 'Pages';
+        removeButton.textContent = 'X';
+        readButton.textContent = 'Mark as read';
 
         titleElement.textContent = myLibrary[book].title;
         authorElement.textContent = myLibrary[book].author;
         pagesElement.textContent = myLibrary[book].pages;
         myLibrary[book].isRead ? isReadElement.textContent = 'Already read' : isReadElement.textContent = 'Not read';
+
+        removeButton.addEventListener('click', removeBook);
+        readButton.addEventListener('click', markAsRead);
     }
+}
+
+function removeBook(e) {
+    let bookId = e.target.parentNode.parentNode.id;
+    bookId = bookId.slice(-1);
+
+    myLibrary.splice(bookId, 1);
+    collection.innerHTML = '';
+    populateCollection();
+}
+
+function markAsRead(e) {
+    let bookId = e.target.parentNode.parentNode.id;
+    bookId = bookId.slice(-1);
+
+    myLibrary[bookId].isRead = true;
+    e.target.remove();
+    collection.innerHTML = '';
+    populateCollection();
 }
