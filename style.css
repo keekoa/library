@@ -85,7 +85,7 @@ section {
 .new-book {
     padding: 64px;
     background-color: var(--main-text-color);
-    border: 1px solid var(--main-text-color);
+    border: 3px solid var(--switch-off-color);
     position: fixed;
     top: 50%;
     left: 50%;
@@ -127,6 +127,14 @@ input:focus {
     background: var(--button-hover-color);
     color: var(--background-color);
     outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px var(--second-background-color) inset !important;
+    -webkit-text-fill-color: var(--main-text-color) !important;
 }
 
 .is-read {
@@ -239,7 +247,7 @@ input:checked + .slider-green:before {
 
 .book h2 {
     color: var(--second-background-color);
-    border: 1px solid var(--second-background-color);
+    border: 2px solid var(--second-background-color);
     padding: 5px 10px;
 }
 
