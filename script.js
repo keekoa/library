@@ -70,7 +70,6 @@ function populateCollection() {
         details.classList.add('details');
         pageContainer.classList.add('pages-container');
         pagesElement.classList.add('page');
-        isReadElement.classList.add('isRead');
         cardButtons.classList.add('card-buttons');
         removeButton.classList.add('remove-button');
         readButton.classList.add('read-button');
@@ -100,7 +99,14 @@ function populateCollection() {
         titleElement.textContent = myLibrary[book].title;
         authorElement.textContent = myLibrary[book].author;
         pagesElement.textContent = myLibrary[book].pages;
-        myLibrary[book].isRead ? isReadElement.textContent = 'Already read' : isReadElement.textContent = 'Not read';
+        if (myLibrary[book].isRead === true) {
+            isReadElement.textContent = 'Already read';
+            isReadElement.classList.add('already-read');
+        }
+        else {
+            isReadElement.textContent = 'Not read';
+            isReadElement.classList.add('not-read');
+        }
 
         removeButton.addEventListener('click', removeBook);
         readButton.addEventListener('click', markAsRead);
