@@ -1,19 +1,9 @@
-// Modal control
-const openButton = document.getElementById('open-modal');
-const closeButton = document.getElementById('close-modal');
-const modal = document.querySelector('.new-book');
+// MAIN SCRIPT
 
-openButton.addEventListener('click', () => {
-    modal.classList.add('show');
-});
-
-closeButton.addEventListener('click', () => {
-    modal.classList.remove('show');
-});
-
-// Script
+// Array to store book objects
 let myLibrary = [];
 
+// Book object(s) constructor
 function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
@@ -21,10 +11,16 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
+// Global variable for refresh e.g. connection.innerHTML = ''; before populateCollection();
 const collection = document.querySelector('.collection');
 
+// Hide collection
+const collectionContainer = document.querySelector('.collection-container');
+collectionContainer.style.display = 'none';
+
+// Add object to myLibrary[] on form submit
 const form = document.forms['form'];
-form.onsubmit = function (e) {
+form.onsubmit = e => {
     e.preventDefault();
 
     let title = document.getElementById('title').value;
@@ -43,11 +39,15 @@ form.onsubmit = function (e) {
 };
 
 function populateCollection() {
+    // Show collection
+    collectionContainer.style.display = '';
+
+    // i to iterate IDs
     let i = -1;
     for (let book in myLibrary) {
         i += 1;
 
-        // Elements
+        // Create elements
         const bookCard = document.createElement('div');
         const titleElement = document.createElement('h2');
         const authorElement = document.createElement('h3');
@@ -60,10 +60,10 @@ function populateCollection() {
         const removeButton = document.createElement('button');
         const readButton = document.createElement('button');
 
-        // Add an id to each book card
+        // Assign an id to each book card
         bookCard.setAttribute('id', `book-${i}`);
 
-        // Classlists
+        // Add classes
         bookCard.classList.add('book');
         titleElement.classList.add('title');
         authorElement.classList.add('author');
@@ -74,7 +74,7 @@ function populateCollection() {
         removeButton.classList.add('remove-button');
         readButton.classList.add('read-button');
 
-        // Append
+        // Add elements
         collection.appendChild(bookCard);
 
         bookCard.appendChild(titleElement);
@@ -91,7 +91,7 @@ function populateCollection() {
         if (myLibrary[book].isRead === false) { cardButtons.appendChild(readButton); }
         cardButtons.appendChild(removeButton);
 
-        // Content
+        // Add contents
         pageTitle.textContent = 'Pages';
         removeButton.textContent = 'X';
         readButton.textContent = 'Mark as read';
@@ -99,6 +99,8 @@ function populateCollection() {
         titleElement.textContent = myLibrary[book].title;
         authorElement.textContent = myLibrary[book].author;
         pagesElement.textContent = myLibrary[book].pages;
+
+        // Determine read/not read status
         if (myLibrary[book].isRead === true) {
             isReadElement.textContent = 'Already read';
             isReadElement.classList.add('already-read');
@@ -108,6 +110,7 @@ function populateCollection() {
             isReadElement.classList.add('not-read');
         }
 
+        // Add clicks listeners to 'remove' and 'mark as read' buttons
         removeButton.addEventListener('click', removeBook);
         readButton.addEventListener('click', markAsRead);
     }
@@ -120,6 +123,10 @@ function removeBook(e) {
     myLibrary.splice(bookId, 1);
     collection.innerHTML = '';
     populateCollection();
+
+    if (myLibrary.length === 0) {
+        collectionContainer.style.display = 'none';
+    }
 }
 
 function markAsRead(e) {
@@ -131,3 +138,17 @@ function markAsRead(e) {
     collection.innerHTML = '';
     populateCollection();
 }
+
+
+// Modal control
+const openButton = document.getElementById('open-modal');
+const closeButton = document.getElementById('close-modal');
+const modal = document.querySelector('.new-book');
+
+openButton.addEventListener('click', () => {
+    modal.classList.add('show');
+});
+
+closeButton.addEventListener('click', () => {
+    modal.classList.remove('show');
+});

@@ -15,6 +15,22 @@
     margin: 0;
     border: 0;
     font-family: 'Anuphan', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--accent-color);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  
 }
 
 html {
@@ -26,8 +42,8 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    margin: 0 50px;
-    width: 60vw;
+    
+    width: 100vw;
     min-width: 800px;
     font-size: 16px;
 }
@@ -38,11 +54,17 @@ header {
     align-items: center;
 
     background-color: var(--second-background-color);
-    border: 1px solid var(--accent-color);
-    margin: 20px;
+    border-bottom: 1px solid var(--accent-color);
+    margin-bottom: 20px;
     height: 100px;
 
     color: var(--main-text-color);
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .add-book {
@@ -50,8 +72,8 @@ header {
     color: var(--background-color);
     font-size: 1.2rem;
     font-weight: 500;
-    margin-left: 20px;
     padding: 5px 10px;
+    align-self: self-end;
 }
 
 .add-book:hover {
@@ -199,28 +221,15 @@ input:checked + .slider-green:before {
 }
 
 .collection-container {
-    background-color: var(--second-background-color);
-    border: 1px solid var(--accent-color);
-    margin: 20px;
-    padding: 20px;
-}
-
-.collection-container h1 {
-    background-color: var(--second-background-color);
-    color: var(--main-text-color);
-    border: 1px solid var(--accent-color);
-    padding: 10px;
-    text-align: center;
+    margin: 30px;
+    width: 60vw;
+    min-width: 500px;
 }
 
 .collection {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
     gap: 20px;
-    background-color: var(--second-background-color);
-    border: 1px solid var(--accent-color);
-    margin-top: 20px;
-    padding: 20px;
 }
 
 .book {
