@@ -11,11 +11,6 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
 }
 
-// Change book status using prototype method
-Book.prototype.markAsRead = function () {
-    !this.isRead ? this.isRead = true : this.isRead = false;
-};
-
 // Global variable for refresh e.g. connection.innerHTML = ''; before populateCollection();
 const collection = document.querySelector('.collection');
 
@@ -117,7 +112,7 @@ function populateCollection() {
 
         // Add clicks listeners to 'remove' and 'mark as read' buttons
         removeButton.addEventListener('click', removeBook);
-        readButton.addEventListener('click', myLibrary[book].markAsRead);
+        readButton.addEventListener('click', markAsRead);
     }
 }
 
@@ -134,16 +129,15 @@ function removeBook(e) {
     }
 }
 
-/* ALTERNATIVE WAY TO CHANGE STATUS */
-// function markAsRead(e) {
-//     let bookId = e.target.parentNode.parentNode.id;
-//     bookId = bookId.slice(-1);
+function markAsRead(e) {
+    let bookId = e.target.parentNode.parentNode.id;
+    bookId = bookId.slice(-1);
 
-//     myLibrary[bookId].isRead = true;
-//     e.target.remove();
-//     collection.innerHTML = '';
-//     populateCollection();
-// }
+    myLibrary[bookId].isRead = true;
+    e.target.remove();
+    collection.innerHTML = '';
+    populateCollection();
+}
 
 
 // Modal control
