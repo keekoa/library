@@ -1,15 +1,17 @@
 // MAIN SCRIPT
 
+// Class for book instance
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+}
+
 // Array to store book objects
 let myLibrary = [];
-
-// Book object(s) constructor
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-}
 
 // Global variable for refresh e.g. connection.innerHTML = ''; before populateCollection();
 const collection = document.querySelector('.collection');
